@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="col-12 d-flex justify-content-center" style="margin-top: 100px">
+    <div class="d-flex flex-column bd-highlight mb-3" style="width:90%">
+      <div class="p-2 bd-highlight">
+        <div class="row">
+          <app-filtar-usuario (buscarUsuario)="buscarUsuario($event)"></app-filtar-usuario>
+        </div>
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="row">
+          <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+            <tr>
+              <th>Identificacion</th>
+              <th>Nombre</th>
+              <th>Medico</th>
+              <th>Especilidad</th>
+              <th>Fecha Cita</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{ data.identificacion }}</td>
+              <td>{{ data.nombre }}</td>
+              <td>{{ data.medico }}</td>
+              <td>{{ data.especialida }}</td>
+              <td>{{ data.fechaCita }}</td>
+              <td>
+                <a>Elimnair</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>Delete</a>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

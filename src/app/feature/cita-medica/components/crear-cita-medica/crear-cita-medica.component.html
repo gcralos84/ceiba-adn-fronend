@@ -1,1 +1,65 @@
-<p>crear-cita-medica works!</p>
+<div class="container">
+   <div class="row" style="margin-top:100px; width:50%">
+     <nz-steps [nzCurrent]="current">
+       <nz-step nzTitle="Informacion Paciente">
+       </nz-step>
+       <nz-step nzTitle="Informacion Cita Medica"></nz-step>
+       <nz-step nzTitle="Detalle"></nz-step>
+     </nz-steps>
+
+     <div class="steps-content">
+       <div *ngIf="index == 'PACIENTE'">
+         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+           <input [formControl]="buscarPorIdentificacion" type="text" nz-input placeholder="input search text" />
+         </nz-input-group>
+         <ng-template #suffixIconButton>
+           <button nz-button nzType="primary" (click)="buscarUsuario()">buscar</button>
+         </ng-template>
+         <form [formGroup]="formGroupPaciente" (ngSubmit)="agregarPaciente()" >
+         <div class="row" >
+             <div class="col-6" >
+               <label for="identificacion">Identificacion</label>
+               <input nz-input formControlName="identificacion" placeholder="Basic usage"  />
+             </div>
+             <div class="col-6">
+               <label for="nombre">Nombre Usuario</label>
+               <input nz-input formControlName="nombre" placeholder="Basic usage"  />
+             </div>
+         </div>
+         <div class="row">
+           <div class="col-6" >
+             <label for="tipoUsuario">Tipo Usuario</label>
+             <nz-select   formControlName="tipoUsuario" [ngModel]="'TIPO_I'" style=" width:100%">
+               <nz-option [nzLabel]="'TIPO_I'" [nzValue]="'TIPO_I'"></nz-option>
+               <nz-option [nzLabel]="'TIPO_II'" [nzValue]="'TIPO_II'"></nz-option>
+               <nz-option [nzLabel]="'TIPO_III'" [nzValue]="'TIPO_III'"></nz-option>
+             </nz-select>
+           </div>
+           <div class="col-6">
+             <label for="fecha_nacimiento">Fecha Nacimiento</label>
+             <nz-date-picker formControlName="fechaNacimiento"  style="width:100%"></nz-date-picker>
+           </div>
+           </div>
+         <div class="row ">
+           <div class="col-6 d-inline-flex p-2 bd-highlight">
+             <button nz-button nzType="primary" *ngIf="estadoGuardar == true">
+               <span>Guardar</span>
+             </button>
+         </div>
+         </div>
+         </form>
+       </div>
+     </div>
+     <div class="steps-action">
+       <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+         <span>Previous</span>
+       </button>
+       <button nz-button nzType="primary" (click)="next()" *ngIf="current < 2">
+         <span>Next</span>
+       </button>
+       <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+         <span>Done</span>
+       </button>
+     </div>
+   </div>
+</div>

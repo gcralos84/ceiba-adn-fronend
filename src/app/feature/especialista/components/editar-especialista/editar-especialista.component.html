@@ -1,0 +1,11 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Actulizar Especialista" (nzOnCancel)="handleCancel()">
+  <ng-container *nzModalContent>
+  <app-formulario-especialista
+    [setData]="setData"
+    (data)="actulizarEspecilista($event)"
+  ></app-formulario-especialista>
+  </ng-container>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+  </div>
+</nz-modal>

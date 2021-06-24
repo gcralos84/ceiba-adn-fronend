@@ -1,0 +1,40 @@
+<form [formGroup]="formEspecialista" (ngSubmit)="crearEspecialista()">
+  <div class="row">
+    <div class="col-12 form-item">
+      <label for="identificacion">Identificacion</label>
+      <input type="text"  nz-input formControlName="identificacion" id="identificacion" placeholder="Basic usage" />
+      <div *ngIf="formEspecialista.get('identificacion').errors && formEspecialista.get('identificacion').touched">
+        <small  class="msg-error" *ngIf="formEspecialista.get('identificacion').hasError('required')" >
+          El Campo es  requerido.
+        </small>
+        <small  class="msg-error" *ngIf="formEspecialista.get('identificacion').hasError('pattern')" >
+          Solo se puede ingresar  numeros 10 digitos.
+        </small>
+      </div>
+
+    </div>
+    <div class="col-12 form-item">
+      <label for="nombre">Nombre Usuario</label>
+      <input type="text"  nz-input formControlName="nombre" id="nombre" placeholder="Basic usage"  />
+      <div *ngIf="formEspecialista.get('nombre').errors && formEspecialista.get('nombre').touched">
+        <small  class="msg-error" *ngIf="formEspecialista.get('nombre').hasError('required')" >
+          El Campo es  requerido.
+        </small>
+        <small  class="msg-error" *ngIf="formEspecialista.get('nombre').hasError('pattern')" >
+          Solo se pueden ingresar letras minimo  6  maximo  50.
+        </small>
+      </div>
+    </div>
+    <div class="col-12 form-item">
+      <label for="especialidad">Tipo Especializacion</label>
+      <nz-select   formControlName="especialidad"  id="especialidad"  style=" width:100%">
+        <nz-option *ngFor="let tipo of  tipoEspecialida" nzLabel="{{ tipo.name }}" nzValue="{{tipo.name}}"></nz-option>
+      </nz-select>
+    </div>
+    <div class="col-12 btn-from">
+      <button  type="submit" nz-button nzType="primary" [disabled]="formEspecialista.invalid">
+        <span>Guardar</span>
+      </button>
+    </div>
+  </div>
+</form>

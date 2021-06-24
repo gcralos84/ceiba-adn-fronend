@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Paciente} from '@citaMedica/shared/modelo/paciente';
-import {PacienteService} from '@citaMedica/shared/paciente.service';
+
+import {PacienteService} from '@citaMedica/shared/servicios/paciente.service';
+import {DetalleConsulta} from '@citaMedica/shared/modelo/detalle-consulta';
 
 @Component({
   selector: 'app-listar-cita-medica',
@@ -9,8 +10,8 @@ import {PacienteService} from '@citaMedica/shared/paciente.service';
 })
 
 export class ListarCitaMedicaComponent implements OnInit {
-  public listaPaciente: Paciente[];
-  //listOfData: Paciente[] = [];
+  public listaDetatalleConsuluta: DetalleConsulta[];
+
   constructor( protected  pacienteService: PacienteService) { }
 
   ngOnInit(): void {
@@ -18,8 +19,8 @@ export class ListarCitaMedicaComponent implements OnInit {
 
   }
   listarCitaMedicas(){
-    this.pacienteService.consultar().subscribe(data => {
-      this.listaPaciente = data;
+    this.pacienteService.detalleConsulta().subscribe(data => {
+      this.listaDetatalleConsuluta = data;
     });
   }
   buscarUsuario(event: string){

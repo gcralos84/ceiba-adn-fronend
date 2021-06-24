@@ -10,30 +10,33 @@ import { CitaMedicaRoutingModule } from './cita-medica-routing.module';
 import { CrearCitaMedicaComponent } from './components/crear-cita-medica/crear-cita-medica.component';
 import { ListarCitaMedicaComponent } from './components/listar-cita-medica/listar-cita-medica.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FiltarUsuarioComponent } from './components/filtar-usuario/filtar-usuario.component';
+import { FiltarUsuarioComponent } from '../../core/components/filtar-usuario/filtar-usuario.component';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
-
+import {NzDescriptionsModule} from 'ng-zorro-antd/descriptions';
+import {EliminarDuplicadoPipe} from '@shared/pipe/eliminar-duplicado.pipe';
 
 
 @NgModule({
   declarations: [
     CrearCitaMedicaComponent,
     ListarCitaMedicaComponent,
-    FiltarUsuarioComponent
+    FiltarUsuarioComponent,
+    EliminarDuplicadoPipe
   ],
-  imports: [
-    CommonModule,
-    CitaMedicaRoutingModule,
-    NzTableModule,
-    NzDividerModule,
-    NzInputModule,
-    NzStepsModule,
-    NzButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NzSelectModule,
-    NzDatePickerModule
-  ],
+    imports: [
+        CommonModule,
+        CitaMedicaRoutingModule,
+        NzTableModule,
+        NzDividerModule,
+        NzInputModule,
+        NzStepsModule,
+        NzButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzSelectModule,
+        NzDatePickerModule,
+        NzDescriptionsModule
+    ],
   exports: [
     NzTableModule,
     NzDividerModule,

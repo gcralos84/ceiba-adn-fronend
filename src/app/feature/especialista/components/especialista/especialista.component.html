@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row" style="margin-top:100px">
+      <div class="col-4">
+        <app-crear-especialista (valueResponse)="valueResponse($event)"></app-crear-especialista>
+      </div>
+       <div class="col-8">
+         <app-editar-especialista
+           [showmodal]="showModal"
+           (showModalOutput)="showModalOutput($event)"
+           (actulizarLista)="actulizarLista($event)"
+         >
+         </app-editar-especialista>
+          <app-eliminar-especialista
+            [identificacion]="identificacion"
+            (actulizarLista)="actulizarLista($event)">
+          </app-eliminar-especialista>
+          <app-listar-especialista
+            [value]="actulizar"
+            (eliminarEspecialista)="eliminarEspecialista($event)"
+            (showModal)="mostarModal($event)">
+          </app-listar-especialista>
+       </div>
+    </div>
+  </div>

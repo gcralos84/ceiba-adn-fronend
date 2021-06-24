@@ -1,0 +1,21 @@
+<nz-table #basicTable [nzData]="especialistaModel">
+  <thead>
+  <tr>
+    <th>Identificacion</th>
+    <th>Nombre</th>
+    <th>Tipo Especializacion</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{data.identificacion}}</td>
+    <td>{{data.nombre}}</td>
+    <td>{{data.especialista}}</td>
+    <td>
+      <button nz-button nzType="default" nzDanger style="margin-right: 20px" (click)="eliminar(data.identificacion)">Eliminar</button>
+      <button nz-button nzType="primary" nzGhost (click)="editar(data)">Editar</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

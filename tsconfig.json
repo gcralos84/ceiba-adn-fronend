@@ -36,6 +36,9 @@
       "@citaMedica/*": [
         "src/app/feature/cita-medica/*"
       ],
+      "@especialista/*": [
+        "src/app/feature/especialista/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ]

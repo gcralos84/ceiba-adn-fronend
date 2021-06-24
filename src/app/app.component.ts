@@ -11,7 +11,8 @@ export class AppComponent {
   title = 'app-base';
   public companies: MenuItem[] = [
     { url: '/listar-cita-medica', nombre: 'Consulta Medica' },
-    { url: '/crear-cita-medica', nombre: 'Agregar Cita Medica' }
+    { url: '/crear-cita-medica', nombre: 'Agregar Cita Medica' },
+    { url: '/especialistas', nombre: 'Gestionar Especialista' }
 
   ];
 

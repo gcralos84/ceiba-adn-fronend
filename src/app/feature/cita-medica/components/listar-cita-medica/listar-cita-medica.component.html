@@ -8,29 +8,27 @@
       </div>
       <div class="p-2 bd-highlight">
         <div class="row">
-          <nz-table #basicTable [nzData]="listaPaciente">
+          <nz-table #basicTable [nzData]="listaDetatalleConsuluta">
             <thead>
             <tr>
               <th>Identificacion</th>
               <th>Nombre</th>
               <th>Medico</th>
               <th>Especilidad</th>
+              <th>Hora Cita</th>
               <th>Fecha Cita</th>
-              <th>Action</th>
+              <th>Cuota Moderadora</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let data of basicTable.data">
               <td>{{ data.identificacion }}</td>
               <td>{{ data.nombre }}</td>
-              <td>{{ data.medico }}</td>
-              <td>{{ data.especialida }}</td>
+              <td>{{ data.nombreEspecilista }}</td>
+              <td>{{ data.especialidad }}</td>
+              <td>{{ data.horaCita }}</td>
               <td>{{ data.fechaCita }}</td>
-              <td>
-                <a>Elimnair</a>
-                <nz-divider nzType="vertical"></nz-divider>
-                <a>Delete</a>
-              </td>
+              <td>{{ data.cuoataModeradora }}</td>
             </tr>
             </tbody>
           </nz-table>

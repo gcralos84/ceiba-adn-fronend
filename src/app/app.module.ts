@@ -4,7 +4,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from '@home/home.component';
-//import { ProductoModule } from '@producto/producto.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -15,11 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 registerLocaleData(es);
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -29,14 +25,13 @@ registerLocaleData(es);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //ProductoModule,
     CoreModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [CookieService, { provide: NZ_I18N, useValue: es_ES }],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: [CookieService, {provide: NZ_I18N, useValue: es_ES}],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

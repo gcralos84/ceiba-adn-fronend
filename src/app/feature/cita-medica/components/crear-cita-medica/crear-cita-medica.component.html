@@ -1,16 +1,18 @@
 <div class="container">
-   <div class="row" style="margin-top:100px; width:50%">
+   <div class="row" style="margin-top:100px; width:100%">
+     <div class="col-6">
      <nz-steps [nzCurrent]="current">
        <nz-step nzTitle="Informacion Paciente">
        </nz-step>
        <nz-step nzTitle="Informacion Cita Medica"></nz-step>
-       <nz-step nzTitle="Detalle"></nz-step>
+       <nz-step nzTitle="Finalizar"></nz-step>
      </nz-steps>
 
      <div class="steps-content">
+       <!-- formulario  paciente  !-->
        <div *ngIf="index == 'PACIENTE'">
          <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-           <input [formControl]="buscarPorIdentificacion" type="text" nz-input placeholder="input search text" />
+           <input [formControl]="buscarPorIdentificacion" id="buscarPorIdentificacion" type="text" nz-input placeholder="input search text" />
          </nz-input-group>
          <ng-template #suffixIconButton>
            <button nz-button nzType="primary" (click)="buscarUsuario()">buscar</button>
@@ -19,25 +21,25 @@
          <div class="row" >
              <div class="col-6" >
                <label for="identificacion">Identificacion</label>
-               <input nz-input formControlName="identificacion" placeholder="Basic usage"  />
+               <input nz-input formControlName="identificacion" id="identificacion" placeholder="Basic usage"  />
              </div>
              <div class="col-6">
                <label for="nombre">Nombre Usuario</label>
-               <input nz-input formControlName="nombre" placeholder="Basic usage"  />
+               <input nz-input formControlName="nombre" id="nombre" placeholder="Basic usage"  />
              </div>
          </div>
          <div class="row">
            <div class="col-6" >
              <label for="tipoUsuario">Tipo Usuario</label>
-             <nz-select   formControlName="tipoUsuario" [ngModel]="'TIPO_I'" style=" width:100%">
+             <nz-select   formControlName="tipoUsuario"  id="tipoUsuario" [ngModel]="'TIPO_I'" style=" width:100%">
                <nz-option [nzLabel]="'TIPO_I'" [nzValue]="'TIPO_I'"></nz-option>
                <nz-option [nzLabel]="'TIPO_II'" [nzValue]="'TIPO_II'"></nz-option>
                <nz-option [nzLabel]="'TIPO_III'" [nzValue]="'TIPO_III'"></nz-option>
              </nz-select>
            </div>
            <div class="col-6">
-             <label for="fecha_nacimiento">Fecha Nacimiento</label>
-             <nz-date-picker formControlName="fechaNacimiento"  style="width:100%"></nz-date-picker>
+             <label for="fechaNacimiento">Fecha Nacimiento</label>
+             <nz-date-picker formControlName="fechaNacimiento"  id="fechaNacimiento" style="width:100%"></nz-date-picker>
            </div>
            </div>
          <div class="row ">
@@ -49,17 +51,69 @@
          </div>
          </form>
        </div>
+       <!-- fin  formulario paciente !-->
+       <!-- inicio  formulario  consulta !-->
+       <div *ngIf="index ==  'CONSULTA'">
+         <form [formGroup]="formGropuInfoCita" (ngSubmit)="buscarfecha()">
+            <div class="row">
+               <div class="col-6">
+                 <label for="fechaCitaMedica">Fecha Cita Medica</label>
+                 <nz-date-picker  formControlName="fechaCitaMedica"  style="width:100%" id="fechaCitaMedica" ></nz-date-picker>
+               </div>
+              <div class="col-3" >
+                <label for="horaCita">Hora</label>
+                <nz-select formControlName="horaCita"  id="horaCita"  style="width:100%;">
+                  <nz-option *ngFor="let tipo of tipoHoras" nzValue="{{tipo.value}}" nzLabel="{{tipo.name}}"></nz-option>
+                </nz-select>
+              </div>
+              <div class="col-3">
+                <button nz-button nzType="default" style="margin-top:20px">
+                  <span>Buscar Fecha</span>
+                </button>
+              </div>
+            </div>
+           <div class="row">
+             <div class="col-6">
+               <label for="tipoConsulta">Selecione Tipo Consulta</label>
+               <nz-select   formControlName="tipoConsulta"  id="tipoConsulta" [ngModel]="0" style=" width:100%">
+                 <nz-option [nzLabel]="'Selecione Tipo Consulta'" [nzValue]="0"></nz-option>
+                 <nz-option *ngFor="let list of especialistas | eliminarDuplicado  " nzLabel="{{ list  }}" nzValue="{{ list }}"></nz-option>
+               </nz-select>
+             </div>
+             <div class="col-6">
+               <label for="nombreEspecilista">Selecione el especialista</label>
+               <nz-select   formControlName="nombreEspecilista"  id="nombreEspecilista"  style=" width:100%">
+                 <nz-option *ngFor="let list of nombreEs " nzLabel="{{ list.nombre }}"  nzValue="{{ list.identificacion }}"></nz-option>
+               </nz-select>
+             </div>
+           </div>
+         </form>
+       </div>
+       <!--  fin formulario cita medica  !-->
+       <div *ngIf="index == 'FINALIZAR'">
+         <h1> Mensaje de  Finalizacion </h1>
+       </div>
      </div>
      <div class="steps-action">
        <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
-         <span>Previous</span>
+         <span>Anterior</span>
        </button>
        <button nz-button nzType="primary" (click)="next()" *ngIf="current < 2">
-         <span>Next</span>
+         <span>{{accion}}</span>
        </button>
-       <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
-         <span>Done</span>
+       <button nz-button nzType="primary" (click)="agregarCita()" *ngIf="current === 2">
+         <span>Crear Cita</span>
        </button>
      </div>
    </div>
+      <div class="col-6" style="margin-left: 100px; width:500px;">
+        <h2>Informacion General</h2>
+            <ul>
+              <li>Ingrese al consultorio con dos minimo con dos horas de anticipacion.</li>
+              <li>Recuerde Llevar los examenes medicos o historial clinica</li>
+              <li>Si Por algun motivo no puede asistir  canselar  con dos horas de antisipacion al numero: 4452525</li>
+              <li>Si cancela  o no ingresa a la consulta  no se devolvera el pago.</li>
+            </ul>
+      </div>
+  </div>
 </div>

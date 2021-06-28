@@ -15,7 +15,7 @@
            <input [formControl]="buscarPorIdentificacion" id="buscarPorIdentificacion" type="text" nz-input placeholder="input search text" />
          </nz-input-group>
          <ng-template #suffixIconButton>
-           <button nz-button nzType="primary" (click)="buscarUsuario()">buscar</button>
+           <button id="buscarUsuario" nz-button nzType="primary" (click)="buscarUsuario()">buscar</button>
          </ng-template>
          <form [formGroup]="formGroupPaciente" (ngSubmit)="agregarPaciente()" >
          <div class="row" >

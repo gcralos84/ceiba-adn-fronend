@@ -1,10 +1,17 @@
 import { by, element } from 'protractor';
 
 export class NavbarPage {
-    linkHome = element(by.xpath('/html/body/app-root/app-navbar/nav/a[1]'));
-    linkProducto = element(by.xpath('/html/body/app-root/app-navbar/nav/a[2]'));
+    linkListarCitaMedica = element(by.xpath('//*[@id="/listar-cita-medica"]'));
+    linkCrearCitamedica = element(by.xpath('//*[@id="/crear-cita-medica"]'));
+    linkCrearEspecialista = element(by.xpath('//*[@id="/especialistas"]'));
 
-    async clickBotonProductos() {
-        await this.linkProducto.click();
+    async clickBotonListarCitaMedica() {
+        await this.linkListarCitaMedica.click();
+    }
+    async clickBotonCrearCitaMedica() {
+      await this.linkCrearCitamedica.click();
+    }
+    async clickBotonCrearEspecialista() {
+      await this.linkCrearEspecialista.click();
     }
 }
